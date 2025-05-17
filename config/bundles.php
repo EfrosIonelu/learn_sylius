@@ -22,4 +22,5 @@ return [
     Sylius\BootstrapAdminUi\Symfony\SyliusBootstrapAdminUiBundle::class => ['all' => true],
     Sylius\UiTranslations\Symfony\SyliusUiTranslationsBundle::class => ['all' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
+    Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
 ];
