@@ -1,3 +1,10 @@
+/.idea/*
+/etc/build/*
+!/etc/build/.gitignore
+.DS_store
+/translations
+/php.ini
+.php-version
 
 ###> symfony/framework-bundle ###
 /.env.local
