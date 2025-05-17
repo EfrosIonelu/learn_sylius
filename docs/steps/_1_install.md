@@ -1,6 +1,7 @@
 # Steps
-- composer create-project symfony/skeleton learn_sylius
-  - https://stack.sylius.com/getting-started
+- Install
+  - ```composer create-project symfony/skeleton learn_sylius```
+  - Link: https://stack.sylius.com/getting-started
 - composer require -W \
   doctrine/orm "^2.16" \
   doctrine/doctrine-bundle \
