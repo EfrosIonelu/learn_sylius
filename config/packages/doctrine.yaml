@@ -9,6 +9,10 @@ doctrine:
         profiling_collect_backtrace: '%kernel.debug%'
         use_savepoints: true
     orm:
+        resolve_target_entities:
+            Sylius\Component\User\Model\UserInterface: App\Entity\User\AppUser
+            Sylius\Component\Customer\Model\CustomerInterface: App\Entity\User\AppCustomer
+            Sylius\Component\User\Model\UserOAuthInterface: App\Entity\User\AppUserOAuth
         auto_generate_proxy_classes: true
         enable_lazy_ghost_objects: true
         report_fields_where_declared: true

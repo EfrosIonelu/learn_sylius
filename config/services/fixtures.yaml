@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Fixture\AppUserFixture:
+        arguments:
+            $exampleFactory: '@App\Factory\AppUserFactory'
+            $objectManager: '@doctrine.orm.entity_manager'

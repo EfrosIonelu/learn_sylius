@@ -1,29 +1,53 @@
+parameters:
+    secret: '%env(resolve:APP_SECRET)%'
+    app_admin.path_name: '%env(resolve:APP_ADMIN_ROUTING_PATH_NAME)%'
+    app.security.admin_regex: "^/%app_admin.path_name%"
+
 security:
-    # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-    # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+        Sylius\Component\User\Model\UserInterface: auto
     providers:
-        users_in_memory: { memory: null }
+        sylius_user_provider:
+            id: sylius.user_user_provider.email_or_name_based
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
-            lazy: true
-            provider: users_in_memory
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
+        admin:
+            context: admin
+            pattern: "%app.security.admin_regex%"
+            provider: sylius_user_provider
+            form_login:
+                provider: sylius_user_provider
+                login_path: sylius_admin_ui_login
+                check_path: sylius_admin_ui_login_check
+                failure_path: sylius_admin_ui_login
+                default_target_path: sylius_admin_ui_dashboard
+                use_forward: false
+                use_referer: false
+            remember_me:
+                secret: "%secret%"
+                path: "/%app_admin.path_name%"
+                name: APP_ADMIN_REMEMBER_ME
+                lifetime: 31536000
+                remember_me_parameter: _remember_me
+            logout:
+                path: sylius_admin_ui_logout
+                target: sylius_admin_ui_login
+                delete_cookies:
+                    access_token: ~
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: "%app.security.admin_regex%/login", roles: PUBLIC_ACCESS }
+        - { path: "%app.security.admin_regex%/login-organization", roles: PUBLIC_ACCESS }
+        - { path: "%app.security.admin_regex%/login-check", roles: PUBLIC_ACCESS }
+        - { path: "%app.security.admin_regex%.*", roles: ROLE_ADMIN }
+        - { path: "%app.security.admin_regex%.*", roles: ROLE_ADMIN }
+        - { path: ^/account, roles: ROLE_USER }
 
 when@test:
     security:

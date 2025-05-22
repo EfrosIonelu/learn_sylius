@@ -19,7 +19,20 @@ services:
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
+            - '../src/Fixture'
+            - '../src/Factory'
             - '../src/Kernel.php'
+
+    sylius.uploader.image:
+        class: App\Services\ImageUploader
+        public: true
+    sylius.factory.avatar_image:
+        class: App\Factory\AvatarImageFactory
+        public: true
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+imports:
+    - { resource: services/factory.yaml }
+    - { resource: services/fixtures.yaml }

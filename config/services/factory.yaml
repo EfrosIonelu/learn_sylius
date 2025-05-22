@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    App\Factory\AppUserFactory:
+        arguments:
+            $appUserFactory: '@sylius.factory.user_user'
+            $appCustomerFactory: '@sylius.factory.customer'

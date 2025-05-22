@@ -1,0 +1,5 @@
+imports:
+    - { resource: "@OdiseoSyliusRbacPlugin/Resources/config/config.yml" }
+
+parameters:
+    root_administrator_email: 'admin@example.com'
