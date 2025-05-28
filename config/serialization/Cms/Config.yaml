@@ -1,0 +1,14 @@
+App\Entity\Cms\Config:
+    attributes:
+        id:
+            groups:
+                - 'config:list_read'
+                - 'config:item_read'
+        keyword:
+            groups:
+                - 'config:list_read'
+                - 'config:item_read'
+        value:
+            groups:
+                - 'config:list_read'
+                - 'config:item_read'

@@ -44,6 +44,7 @@ class AppUserFactory extends AbstractExampleFactory implements ExampleFactoryInt
         /** @var AppUserInterface $user */
         $user = $this->appUserFactory->createNew();
         $user->setUsername($options['username']);
+        $user->setUsernameCanonical($options['username']);
         $user->setPlainPassword($options['password']);
         $user->setEnabled($options['enabled']);
         $user->addRole($options['role']);

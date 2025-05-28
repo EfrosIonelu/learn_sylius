@@ -1,0 +1,29 @@
+resources:
+    App\Entity\User\AppCustomer:
+        shortName: 'customer'
+        description: 'App customers'
+        security: 'is_granted("ROLE_USER")'
+        attributes:
+            pagination_client_items_per_page: true
+            pagination_items_per_page: 25
+            pagination_enabled: true
+
+        collectionOperations:
+            get:
+                method: GET
+                normalization_context:
+                    groups:
+                        - 'customer:list_read'
+                openapi_context:
+                    summary: "Get list of all customers"
+        itemOperations:
+            get:
+                method: GET
+                normalization_context:
+                    groups:
+                        - 'customer:item_read'
+                openapi_context:
+                    summary: "Get customer by id"
+        identifier:
+            id:
+                identifier: true

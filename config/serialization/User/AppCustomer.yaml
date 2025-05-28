@@ -1,0 +1,14 @@
+App\Entity\User\AppCustomer:
+    attributes:
+        id:
+            groups:
+                - 'customer:list_read'
+                - 'customer:item_read'
+        username:
+            groups:
+                - 'customer:list_read'
+                - 'customer:item_read'
+        email:
+            groups:
+                - 'customer:list_read'
+                - 'customer:item_read'

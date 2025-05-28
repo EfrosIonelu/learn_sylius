@@ -12,7 +12,7 @@ class AppUserRepository extends BaseUserRepository implements UserRepositoryInte
     {
         return $this->createQueryBuilder('o')
             ->innerJoin('o.customer', 'customer')
-            ->andWhere('customer.emailCanonical = :email')
+            ->andWhere('customer.emailCanonical = :email OR o.username = :email')
             ->setParameter('email', $email)
             ->getQuery()
             ->getOneOrNullResult()
