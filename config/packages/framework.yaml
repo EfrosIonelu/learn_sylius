@@ -2,15 +2,12 @@
 framework:
     secret: '%env(APP_SECRET)%'
 
-    # Note that the session will be started ONLY if you read or write from it.
     session: true
     serializer:
+        enable_attributes: false
         enabled: true
         mapping:
             paths: [ '%kernel.project_dir%/config/serialization/' ]
-
-    #esi: true
-    #fragments: true
 
 when@test:
     framework:

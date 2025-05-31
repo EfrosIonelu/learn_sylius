@@ -3,7 +3,7 @@ App\Entity\Cms\Config:
         id:
             groups:
                 - 'config:list_read'
-                - 'config:item_read'
+                - 'config:item_wread'
         keyword:
             groups:
                 - 'config:list_read'

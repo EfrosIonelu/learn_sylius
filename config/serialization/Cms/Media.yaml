@@ -1,0 +1,30 @@
+App\Entity\Cms\Media:
+    attributes:
+        id:
+            groups:
+                - 'media:list_read'
+                - 'media:item_read'
+        file:
+            groups:
+                - 'media:item_write'
+        filepath:
+            groups:
+                - 'media:list_read'
+                - 'media:item_read'
+        mimeType:
+            groups:
+                - 'media:list_read'
+                - 'media:item_read'
+        size:
+            groups:
+                - 'media:list_read'
+                - 'media:item_read'
+        originalName:
+            groups:
+                - 'media:list_read'
+                - 'media:item_read'
+                - 'media:item_write'
+        extension:
+            groups:
+                - 'media:list_read'
+                - 'media:item_read'

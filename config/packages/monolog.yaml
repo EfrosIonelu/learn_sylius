@@ -5,6 +5,9 @@ monolog:
 when@dev:
     monolog:
         handlers:
+            deprecation:
+                type: "null"
+                channels: [ deprecation ]
             main:
                 type: stream
                 path: "%kernel.logs_dir%/%kernel.environment%.log"

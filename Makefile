@@ -14,6 +14,9 @@ diff:
 mig:
 	php bin/console doctrine:migrations:migrate;
 
+mig_p:
+	php bin/console doctrine:migrations:migrate prev
+
 watch:
 	npm run watch;
 

@@ -40,4 +40,5 @@ return [
     Knp\Bundle\GaufretteBundle\KnpGaufretteBundle::class => ['all' => true],
     ApiPlatform\Symfony\Bundle\ApiPlatformBundle::class => ['all' => true],
     Odiseo\SyliusRbacPlugin\OdiseoSyliusRbacPlugin::class => ['all' => true],
+    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
 ];

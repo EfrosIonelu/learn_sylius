@@ -6,7 +6,12 @@ api_platform:
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
     mapping:
-        paths: [ '%kernel.project_dir%/config/api_platform/' ]
+        paths: [ '%kernel.project_dir%/src/Entity/' ]
+
+    formats:
+        jsonld: [ 'application/ld+json' ]
+        json: [ 'application/json' ]
+        multipart: [ 'multipart/form-data' ]
 
     swagger:
         api_keys:
