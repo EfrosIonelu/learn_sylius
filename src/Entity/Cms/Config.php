@@ -7,7 +7,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
-use App\Grid\Cms\ConfigGrid;
+use App\Grid\Cms\Cms\ConfigGrid;
 use App\Repository\ConfigRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -16,7 +16,6 @@ use Sylius\Resource\Metadata\BulkDelete;
 use Sylius\Resource\Metadata\Create;
 use Sylius\Resource\Metadata\Delete;
 use Sylius\Resource\Metadata\Index;
-use Sylius\Resource\Metadata\Show;
 use Sylius\Resource\Metadata\Update;
 
 

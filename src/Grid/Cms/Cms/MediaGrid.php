@@ -1,21 +1,18 @@
 <?php
 
-namespace App\Grid\Cms;
+namespace App\Grid\Cms\Cms;
 
-use App\Entity\Cms\Config;
-use Sylius\Bundle\GridBundle\Builder\Action\CreateAction;
+use App\Entity\Cms\Media;
 use Sylius\Bundle\GridBundle\Builder\Action\DeleteAction;
-use Sylius\Bundle\GridBundle\Builder\Action\ShowAction;
 use Sylius\Bundle\GridBundle\Builder\Action\UpdateAction;
-use Sylius\Bundle\GridBundle\Builder\ActionGroup\BulkActionGroup;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
-use Sylius\Bundle\GridBundle\Builder\ActionGroup\MainActionGroup;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
+use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
 
-final class ConfigGrid extends AbstractGrid implements ResourceAwareGridInterface
+final class MediaGrid extends AbstractGrid implements ResourceAwareGridInterface
 {
     public function __construct()
     {
@@ -24,27 +21,33 @@ final class ConfigGrid extends AbstractGrid implements ResourceAwareGridInterfac
 
     public static function getName(): string
     {
-        return 'app_config';
+        return 'app_media';
     }
 
     public function buildGrid(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
-            // see https://github.com/Sylius/SyliusGridBundle/blob/master/docs/field_types.md
+            ->setLimits([10, 20, 50])
             ->addField(
-                StringField::create('keyword')
-                    ->setLabel('Keyword')
+                TwigField::create('filePath', 'admin/grid/field/media_file.html.twig')
+                    ->setPath(".")
+                    ->setLabel('File')
+                    ->setSortable(false)
+            )
+            ->addField(
+                StringField::create('originalName')
+                    ->setLabel('OriginalName')
                     ->setSortable(true)
             )
             ->addField(
-                StringField::create('value')
-                    ->setLabel('Value')
+                StringField::create('size')
+                    ->setLabel('Size')
                     ->setSortable(true)
             )
-            ->addActionGroup(
-                MainActionGroup::create(
-                    CreateAction::create(),
-                )
+            ->addField(
+                StringField::create('mimeType')
+                    ->setLabel('MimeType')
+                    ->setSortable(true)
             )
             ->addActionGroup(
                 ItemActionGroup::create(
@@ -53,16 +56,11 @@ final class ConfigGrid extends AbstractGrid implements ResourceAwareGridInterfac
                     DeleteAction::create()
                 )
             )
-            ->addActionGroup(
-                BulkActionGroup::create(
-                    DeleteAction::create()
-                )
-            )
         ;
     }
 
     public function getResourceClass(): string
     {
-        return Config::class;
+        return Media::class;
     }
 }

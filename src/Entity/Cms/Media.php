@@ -7,12 +7,17 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
-use ApiPlatform\Metadata\Put;
 use ApiPlatform\OpenApi\Model\Operation as OpenApiOperation;
 use ApiPlatform\OpenApi\Model\RequestBody;
+use App\Grid\Cms\Cms\MediaGrid;
 use App\Repository\Cms\MediaRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Sylius\Resource\Metadata\AsResource;
+use Sylius\Resource\Metadata\Delete;
+use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Metadata\Update;
+use Sylius\Resource\Model\ResourceInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -110,10 +115,22 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
     paginationItemsPerPage: 25,
     security: "is_granted('ROLE_USER')"
 )]
+#[AsResource(
+    section: 'admin',
+    templatesDir: '@SyliusAdminUi/crud',
+    routePrefix: '/admin',
+    operations: [
+        new Index(
+            grid: MediaGrid::class
+        ),
+        new Update(),
+        new Delete(),
+    ],
+)]
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 #[ORM\Table(name: 'app_cms_media')]
 #[Vich\Uploadable]
-class Media
+class Media implements ResourceInterface
 {
     #[ApiProperty(identifier: true)]
     #[ORM\Id]

@@ -11,7 +11,7 @@ liip_imagine:
                 data_root: '%kernel.project_dir%/uploads/'
 
     driver: imagick
-    default_image: /images/no_image.png
+    default_image: /media/no-image.jpg
     filter_sets:
         cache: ~
         avatar:
